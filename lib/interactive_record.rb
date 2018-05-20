@@ -58,7 +58,7 @@ class InteractiveRecord
   def self.find_by(row={})
     #binding.pry
     value = row.values[0]
-    str = value.is_a? Integer ? value : "'#{value}'"
+    str = value.class == Fixnum ? value : "'#{value}'"
     sql = "SELECT * FROM #{self.table_name} WHERE #{row.keys[0].to_s} = #{str}"
     DB[:conn].execute(sql)
   end
